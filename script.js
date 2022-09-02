@@ -18,11 +18,37 @@ calculatorButtons.forEach(button => {
     
 });
 
+actionButtons = calculatorButtons.filter(button=>
+    isNaN(button)&&
+    button != '.' &&
+    button != 'AC'    
+    );
+
+console.log(actionButtons);
+
+
 const pressed = function(button){
-    if (!(isNaN(button.textContent))){
-        screen.textContent = button.textContent;
-    }else{
-        screen.textContent = `Not A Number: ${button.textContent}`;
+    let buttonPressed = button.textContent;
+    if (buttonPressed == 'AC'){ //Create button IDS for action buttons
+        screen.textContent = '';
     }
-}
+
+    else if (!(isNaN(buttonPressed) || buttonPressed == '.')){
+        total +=buttonPressed;
+        screen.textContent = total;
+    }else if(actionButtons.includes(buttonPressed)){
+        screen.textContent = buttonPressed;
+
+    }
+
+
+/*     else if (!(isNaN(button.textContent) || button.textContent == '.')){
+        let firstNumber = button.textContent; 
+        screen.textContent += firstNumber;
+    }else if(actionButtons.includes(button.textContent)){
+            let action = button.textContent;
+            console.log(action)
+            
+        } */  
+    }
 
